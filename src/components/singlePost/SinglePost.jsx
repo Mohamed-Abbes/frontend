@@ -17,7 +17,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/api/posts/" + path);
+      const res = await axios.get("https://blog-api-x7wl.onrender.com/api/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -28,7 +28,7 @@ export default function SinglePost() {
   const navigate = useNavigate();
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/posts/${post._id}`, {
+      await axios.delete(`https://blog-api-x7wl.onrender.com/api/posts/${post._id}`, {
         data: { username: user.username },
       });
       
@@ -37,7 +37,7 @@ export default function SinglePost() {
   
   const handleUpdate = async () => {
     try {
-      await axios.put(`/api/posts/${post._id}`, {
+      await axios.put(`https://blog-api-x7wl.onrender.com/api/posts/${post._id}`, {
         username: user.username,
         title,
         desc,
