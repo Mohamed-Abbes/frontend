@@ -8,25 +8,58 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [file, setFile] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+
+  const handelClick = async (e) => {
     e.preventDefault();
-    setError(false);
-    try {
-      const res = await axios.post("https://blog-api-x7wl.onrender.com/api/auth/register", {
+    
+    let newUser;
+    
+    if (file) {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "upload");
+      
+      try {
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dhb7jpopr/image/upload",
+          data
+        );
+        
+        const { public_id, url } = uploadRes.data;
+        newUser = {
+          username,
+          password,
+          email,
+          img: url,
+          public_id,
+        };
+      } catch (err) {
+        console.log(err);
+        return;
+      }
+    } else {
+      newUser = {
         username,
-        email,
         password,
-      });
-      res.data && navigate("/login");
+        email,
+      };
+    }
+    
+    try {
+      const res = await axios.post("https://blog-upp.onrender.com/api/auth/register", newUser);
+      console.log(res);
+      navigate("/login");
     } catch (err) {
-      setError(true);
+      console.log(err);
     }
   };
+
   return (
     <div className="register">
       <span className="registerTitle">Register</span>
-      <form className="registerForm" onSubmit={handleSubmit}>
+      <form className="registerForm" onSubmit={handelClick}>
         <label>Username</label>
         <input
           type="text"
