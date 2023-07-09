@@ -9,34 +9,44 @@ export default function Write() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
   const { user } = useContext(Context);
-  
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
-      data.append("upload_preset", "upload");
 
-      newPost.photo = filename;
+    if (file) {
       try {
-        
-        const uploadRes = await axios.post("https://blog-upp.onrender.com/api/upload", data);
-        const { public_id, url } = uploadRes.data;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+          formData
+        );
+
+        const { public_id, secure_url } = uploadRes.data;
+
         const newPost = {
-        username: user.username,
-        title,
-        desc,
-        img: url,
-        public_id,
-    };
-      const res = await axios.post("https://blog-upp.onrender.com/api/posts",newPost);
-      navigate("post/" + res.data._id);
-    } catch (err) {}
-  }};
+          username: user.username,
+          title,
+          desc,
+          img: secure_url,
+          public_id,
+        };
+
+        const res = await axios.post(
+          "https://blog-upp.onrender.com/api/posts",
+          newPost
+        );
+
+        navigate("post/" + res.data._id);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   return (
     <div className="write">
       {file && (
@@ -58,6 +68,7 @@ export default function Write() {
             placeholder="Title"
             className="writeInput"
             autoFocus={true}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -66,6 +77,7 @@ export default function Write() {
             placeholder="Tell your story..."
             type="text"
             className="writeInput writeText"
+            value={desc}
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>
