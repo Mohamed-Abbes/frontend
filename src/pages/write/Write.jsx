@@ -15,7 +15,7 @@ export default function Write() {
     e.preventDefault();
 
     if (file) {
-      try {
+      
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "upload"); 
@@ -30,6 +30,7 @@ export default function Write() {
           photo: secure_url,
           public_id,
         };
+        try {
         const res = await axios.post("https://blog-api-x7wl.onrender.com/api/posts",newPost);
         navigate("/post/" + res.data._id);
       } catch (err) {
