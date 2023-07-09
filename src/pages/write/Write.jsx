@@ -21,7 +21,7 @@ export default function Write() {
         formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
 
         const uploadRes = await axios.post(
-          "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+          "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload",
           formData
         );
 
