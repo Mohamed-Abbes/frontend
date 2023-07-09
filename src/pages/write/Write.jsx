@@ -25,7 +25,7 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/api/upload", data);
+        await axios.post("https://api.cloudinary.com/v1_1/dk7f4rass/image/upload", data);
       } catch (err) {}
     }
     try {
