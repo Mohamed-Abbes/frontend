@@ -29,7 +29,7 @@ export default function Settings() {
           username,
           email,
           password,
-          photo: secure_url,
+          profilePic: secure_url,
           public_id,
         };
         const res = await axios.put("https://blog-api-x7wl.onrender.com/api/users/" + user._id, updatedUser);
