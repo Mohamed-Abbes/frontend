@@ -8,9 +8,8 @@ import "./singlePost.css";
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  console.log(path);
   const [post, setPost] = useState({});
-  const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/";
+  //const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/";
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -51,7 +50,7 @@ export default function SinglePost() {
     <div className="singlePost">
       <div className="singlePostWrapper">
         {post.photo && (
-          <img src={PF + post.photo} alt="" className="singlePostImg" />
+          <img src={post.photo} alt="" className="singlePostImg" />
         )}
         {updateMode ? (
           <input

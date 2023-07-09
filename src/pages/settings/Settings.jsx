@@ -12,33 +12,38 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/"
+  //const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: "UPDATE_START" });
-    const updatedUser = {
-      userId: user._id,
-      username,
-      email,
-      password,
-    };
+
     if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
-      updatedUser.profilePic = filename;
       try {
-        await axios.post("/upload", data);
-      } catch (err) {}
-    }
-    try {
-      const res = await axios.put("https://blog-api-x7wl.onrender.com/api/users/" + user._id, updatedUser);
-      setSuccess(true);
-      dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-    } catch (err) {
-      dispatch({ type: "UPDATE_FAILURE" });
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",
+          formData
+        );
+
+        const { public_id, secure_url } = uploadRes.data;
+
+        const updatedUser = {
+          userId: user._id,
+          username,
+          email,
+          password,
+          photo: secure_url,
+          public_id,
+        };
+        const res = await axios.put("https://blog-api-x7wl.onrender.com/api/users/" + user._id, updatedUser);
+        setSuccess(true);
+        dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
   return (
