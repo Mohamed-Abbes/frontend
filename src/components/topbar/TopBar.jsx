@@ -26,29 +26,30 @@ export default function TopBar() {
               HOME
             </Link>
           </li>
+          <li className="topListItem">
           <Link className="link" to="/about">
-            <li className="topListItem">ABOUT</li>
+            ABOUT
           </Link>
-
+          </li>
+          <li className="topListItem">
           <Link className="link" to="/contact">
-            <li className="topListItem">CONTACT</li>
+            CONTACT
           </Link>
+          </li>
           <li className="topListItem">
             <Link className="link" to="/write">
               WRITE
             </Link>
           </li>
-          {user && (
-            <li className="topListItem" onClick={handelLogout}>
-              LOGOUT
-            </li>
-          )}
+          <li className="topListItem" onClick={handelLogout}>
+            {user && "LOGOUT"}
+          </li>
         </ul>
       </div>
       <div className="topRight">
-        {user ? (
-          <Link className="link" to="/settings">
-            <img className="topImg" src="" alt=""/>
+      {user ? (
+          <Link to="/settings">
+            <img className="topImg" src={user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">
