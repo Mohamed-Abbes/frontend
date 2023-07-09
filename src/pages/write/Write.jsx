@@ -31,7 +31,7 @@ export default function Write() {
           username: user.username,
           title,
           desc,
-          img: secure_url,
+          photo: secure_url,
           public_id,
         };
 
