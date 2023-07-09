@@ -14,7 +14,7 @@ export default function TopBar() {
       navigate('/login');
     }    
   };
-  const user = true;
+  const user = localStorage.getItem("user") !== null;
   return (
     <div className="top">
       <div className="topLeft">
