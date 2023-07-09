@@ -16,20 +16,13 @@ export default function Settings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (file) {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
-
-        const uploadRes = await axios.post(
-          "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",
-          formData
-        );
-
+        formData.append("upload_preset", "upload"); 
+        const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",formData);
         const { public_id, secure_url } = uploadRes.data;
-
         const updatedUser = {
           userId: user._id,
           username,

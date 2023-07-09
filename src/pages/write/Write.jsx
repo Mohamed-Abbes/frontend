@@ -18,11 +18,9 @@ export default function Write() {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", "upload"); // Replace with your Cloudinary upload preset
+        formData.append("upload_preset", "upload"); 
 
-        const uploadRes = await axios.post(
-          "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",formData);
-
+        const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",formData);
         const { public_id, secure_url } = uploadRes.data;
 
         const newPost = {
@@ -32,13 +30,8 @@ export default function Write() {
           photo: secure_url,
           public_id,
         };
-
-        const res = await axios.post(
-          "https://blog-api-x7wl.onrender.com/api/posts",
-          newPost
-        );
-
-        navigate("post/" + res.data._id);
+        const res = await axios.post("https://blog-api-x7wl.onrender.com/api/posts",newPost);
+        navigate("/post/" + res.data._id);
       } catch (err) {
         console.error(err);
       }

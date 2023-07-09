@@ -50,7 +50,7 @@ export default function TopBar() {
           <Link className="link" to="/settings">
             <img
               className="topImg"
-              src="https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/330790557_238497228520568_3593155148345157246_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=WScrwY8WIOsAX_Dndy_&_nc_ht=scontent.ftun14-1.fna&oh=00_AfBSRo_luWKZzdLZQB0EKU7CE2Kp-6oX_37FTUOaTc-2zQ&oe=649E0BD5"
+              src=""
               alt=""
             />
           </Link>
