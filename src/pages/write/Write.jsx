@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState("");
   const { user } = useContext(Context);
 
   const navigate = useNavigate();
