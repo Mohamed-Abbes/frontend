@@ -6,8 +6,10 @@ export default function TopBar() {
   const handelLogout = () => {
     try {
       localStorage.removeItem("user");
-      navigate('/login');
-    } catch (error) {}
+    } catch (error) {
+      // Handle error, if necessary
+    }
+    navigate('/login');
     
   };
   const user = true;
