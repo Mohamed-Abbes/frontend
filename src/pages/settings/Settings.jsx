@@ -51,7 +51,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : user.profilePic}
+              src={file ? URL.createObjectURL(file) : "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/"+user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">
