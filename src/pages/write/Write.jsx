@@ -13,9 +13,7 @@ export default function Write() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (file) {
-      
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "upload"); 

@@ -6,13 +6,11 @@ import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useContext } from "react";
-import { Context } from "./context/Context";
 import ContactForm from "./pages/ContactForm";
 import About from "./pages/about/About";
 
 function App() {
-  const { user } = useContext(Context);
+  const user = localStorage.getItem("user") !== null;
   return (
     <Router>
       <TopBar />
