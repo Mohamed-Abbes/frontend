@@ -50,19 +50,11 @@ export default function Settings() {
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img
-              src={file ? URL.createObjectURL(file) : "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/"+user.profilePic}
-              alt=""
-            />
+            <img src={file ? URL.createObjectURL(file) : `https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/${user.profilePic}`} alt=""/>
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>
             </label>
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: "none" }}
-              onChange={(e) => setFile(e.target.files[0])}
-            />
+            <input type="file" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
           </div>
           <label>Username</label>
           <input
