@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "./topbar.css";
 
 export default function TopBar() {
+  const navigate = useNavigate();
   const handelLogout = () => {
     try {
       localStorage.removeItem("user");
+      navigate('/login');
     } catch (error) {}
-    window.location.href = '/login';
+    
   };
   const user = true;
   return (
