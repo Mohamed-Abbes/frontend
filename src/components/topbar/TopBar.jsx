@@ -4,12 +4,10 @@ import "./topbar.css";
 
 export default function TopBar() {
   const handelLogout = () => {
-    // document.cookie.removeItem("access_token")
-
     try {
       localStorage.removeItem("user");
     } catch (error) {}
-    window.location.reload();
+    window.location.href = '/login';
   };
   const user = true;
   return (
