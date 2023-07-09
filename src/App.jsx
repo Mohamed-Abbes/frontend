@@ -9,8 +9,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactForm from "./pages/ContactForm";
 import About from "./pages/about/About";
 
+const user = localStorage.getItem("user") !== null
+  console.log(user)
 function App() {
-  const user = localStorage.getItem("user") !== null;
+  
+
   return (
     <Router>
       <TopBar />
