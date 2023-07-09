@@ -1,19 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
+import { useContext } from "react";
 import "./topbar.css";
 
 
 export default function TopBar() {
-  
-  const navigate = useNavigate();
+  const { user, dispatch } = useContext(Context);
+
   const handelLogout = () => {
-    try {
-      localStorage.removeItem("user");
-    } catch (error) {
-      // Handle error
-    }
-    navigate("/", { replace: true });   
+    dispatch({ type: "LOGOUT" }); 
   };
-  const user = localStorage.getItem("user") !== null;
+
   return (
     <div className="top">
       <div className="topLeft">

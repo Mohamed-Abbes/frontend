@@ -8,11 +8,11 @@ import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactForm from "./pages/ContactForm";
 import About from "./pages/about/About";
-
-const user = localStorage.getItem("user") !== null
-  console.log(user)
+import { useContext } from "react";
+import { Context } from "./context/Context";
 function App() {
-  
+  const { user } = useContext(Context);
+
 
   return (
     <Router>
