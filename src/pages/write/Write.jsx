@@ -31,6 +31,7 @@ export default function Write() {
     try {
       const res = await axios.post("https://blog-upp.onrender.com/api/posts",newPost);
       navigate("post/" + res.data._id);
+      console.log(res);
     } catch (err) {}
   };
   return (
