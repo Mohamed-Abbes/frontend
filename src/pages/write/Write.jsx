@@ -19,11 +19,10 @@ export default function Write() {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "upload"); 
-        try {
+
         const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/",formData);
         const { public_id, secure_url } = uploadRes.data;
-      } catch (err) {}
-      try {
+
         const newPost = {
           username: user.username,
           title,
@@ -31,6 +30,7 @@ export default function Write() {
           photo: secure_url,
           public_id,
         };
+        try {
         const res = await axios.post("https://blog-api-x7wl.onrender.com/api/posts",newPost);
         navigate("/post/" + res.data._id);
       } catch (err) {

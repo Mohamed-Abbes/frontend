@@ -16,6 +16,7 @@ export default function Settings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({ type: "UPDATE_START" });
     if (file) {
       try {
         const formData = new FormData();
@@ -35,7 +36,7 @@ export default function Settings() {
         setSuccess(true);
         dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
       } catch (err) {
-        console.error(err);
+        dispatch({ type: "UPDATE_FAILURE" });
       }
     }
   };
