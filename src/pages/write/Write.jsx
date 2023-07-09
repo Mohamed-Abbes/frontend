@@ -36,7 +36,7 @@ export default function Write() {
         };
 
         const res = await axios.post(
-          "https://blog-upp.onrender.com/api/posts",
+          "https://blog-api-x7wl.onrender.com/api/posts",
           newPost
         );
 
