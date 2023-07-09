@@ -9,39 +9,32 @@ export default function Write() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
   const { user } = useContext(Context);
-
+  
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { url,public_id } = uploadRes.data;
-    const newPost = {
-      username: user.username,
-      title,
-      desc,
-      img: url,
-      public_id,
-    };
+    
     if (file) {
       const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
       data.append("file", file);
-      data.append("upload_preset", "upload");
       newPost.photo = filename;
       try {
-        await axios.post(
-          "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload",
-          data
-        );
-      } catch (err) {}
-    }
-    try {
-      const res = await axios.post(
-        "https://blog-upp.onrender.com/api/posts",
-        newPost
-      );
-      navigate(`post/${res.data._id}`);
-      console.log(res);
+        
+        const uploadRes = await axios.post("https://blog-upp.onrender.com/api/upload", data);
+        const { public_id, url } = uploadRes.data;
+        const newPost = {
+        username: user.username,
+        title,
+        desc,
+        img: url,
+        public_id,
+    };
+      const res = await axios.post("https://blog-upp.onrender.com/api/posts",newPost);
+      navigate("post/" + res.data._id);
     } catch (err) {}
-  };
+  }};
   return (
     <div className="write">
       {file && (
