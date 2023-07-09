@@ -12,7 +12,7 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "https://blog-api-x7wl.onrender.com/images/"
+  const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/"
 
   const handleSubmit = async (e) => {
     e.preventDefault();

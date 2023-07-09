@@ -2,10 +2,10 @@ import "./post.css";
 import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
-  const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload";
+  const PF = "https://api.cloudinary.com/v1_1/dk7f4rass/image/upload/";
   return (
     <div className="post">
-      {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
+      {post.photo && <img className="postImg" src={PF} alt="" />}
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((c) => (
