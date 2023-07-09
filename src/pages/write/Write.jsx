@@ -25,7 +25,7 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/https://blog-upp.onrender.comapi/upload", data);
+        await axios.post("https://blog-upp.onrender.com/api/upload", data);
       } catch (err) {}
     }
     try {
