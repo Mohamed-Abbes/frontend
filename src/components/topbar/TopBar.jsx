@@ -3,12 +3,11 @@ import { Context } from "../../context/Context";
 import { useContext } from "react";
 import "./topbar.css";
 
-
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
 
   const handelLogout = () => {
-    dispatch({ type: "LOGOUT" }); 
+    dispatch({ type: "LOGOUT" });
   };
 
   return (
@@ -27,14 +26,14 @@ export default function TopBar() {
             </Link>
           </li>
           <li className="topListItem">
-          <Link className="link" to="/about">
-            ABOUT
-          </Link>
+            <Link className="link" to="/about">
+              ABOUT
+            </Link>
           </li>
           <li className="topListItem">
-          <Link className="link" to="/contact">
-            CONTACT
-          </Link>
+            <Link className="link" to="/contact">
+              CONTACT
+            </Link>
           </li>
           <li className="topListItem">
             <Link className="link" to="/write">
@@ -47,29 +46,18 @@ export default function TopBar() {
         </ul>
       </div>
       <div className="topRight">
-      {user ? (
-          <div>
+        {user ? (
           <Link to="/settings">
-            <img className="topImg" src={user.profilePic} alt="" />
-          </Link>
-          {user.profilePic ? (
-              <div>
-                <Link to="/settings">
-                <img src={user.profilePic} alt="img" className="topImg" />
-                </Link>
-              </div>
+            {user.profilePic ? (
+              <img className="topImg" src={user.profilePic} alt="Profile" />
             ) : (
-              <div>
-                <Link to="/settings">
-                <img
-                  src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
-                  alt="img"
-                  className="topImg"
-                />
-                </Link>
-              </div>
+              <img
+                src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
+                alt="Avatar"
+                className="topImg"
+              />
             )}
-          </div>
+          </Link>
         ) : (
           <ul className="topList">
             <li className="topListItem">
