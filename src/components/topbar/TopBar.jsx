@@ -48,9 +48,28 @@ export default function TopBar() {
       </div>
       <div className="topRight">
       {user ? (
+          <div>
           <Link to="/settings">
             <img className="topImg" src={user.profilePic} alt="" />
           </Link>
+          {user.profilePic ? (
+              <div>
+                <Link to="/settings">
+                <img src={user.profilePic} alt="img" className="topImg" />
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to="/settings">
+                <img
+                  src="https://i.ibb.co/MBtjqXQ/no-avatar.gif"
+                  alt="img"
+                  className="topImg"
+                />
+                </Link>
+              </div>
+            )}
+          </div>
         ) : (
           <ul className="topList">
             <li className="topListItem">
