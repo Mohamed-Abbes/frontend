@@ -1,3 +1,10 @@
 .home {
-    display: flex;
+  display: flex;
+}
+
+/* Responsive CSS for mobile */
+@media (max-width: 767px) {
+  .home {
+    flex-direction: column;
   }
+}

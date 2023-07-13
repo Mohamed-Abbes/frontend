@@ -1,6 +1,15 @@
-.posts{
+.posts {
     flex: 9;
     display: flex;
     flex-wrap: wrap;
     margin: 20px;
-}
+  }
+  
+  /* Responsive CSS for mobile */
+  @media (max-width: 767px) {
+    .posts {
+      flex-direction: column;
+      margin: 10px;
+    }
+  }
+  
